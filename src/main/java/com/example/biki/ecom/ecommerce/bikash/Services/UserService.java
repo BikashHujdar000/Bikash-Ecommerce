@@ -1,7 +1,7 @@
 package com.example.biki.ecom.ecommerce.bikash.Services;
 
 import com.example.biki.ecom.ecommerce.bikash.Controllers.Users.UsersRequest.SignUpRequest;
-import com.example.biki.ecom.ecommerce.bikash.Controllers.Users.UsersRequest.UserDto;
+import com.example.biki.ecom.ecommerce.bikash.Dtos.UserDto;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface UserService {
 
     // delete User
 
-    void deleteUser(Integer userId);
+    void deleteUser(Long userId);
 
 
     // get all user
@@ -22,10 +22,10 @@ public interface UserService {
 
     // update user
 
-    UserDto updateUser(UserDto userDto, Integer userId);
+    UserDto updateUser(UserDto userDto,Long userId);
 
     // get User buy ID
 
-    UserDto getUserById(Integer userId);
+    UserDto getUserById(Long userId);
 
 }

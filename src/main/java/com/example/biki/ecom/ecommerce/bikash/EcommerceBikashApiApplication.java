@@ -1,8 +1,10 @@
 package com.example.biki.ecom.ecommerce.bikash;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class EcommerceBikashApiApplication  implements CommandLineRunner {
@@ -17,4 +19,11 @@ public class EcommerceBikashApiApplication  implements CommandLineRunner {
 		System.out.println("Database is Configured");
 
 	}
+
+	@Bean
+	public ModelMapper modelMapper()
+	{
+		return  new ModelMapper();
+	}
+
 }
