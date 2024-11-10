@@ -1,14 +1,12 @@
 package com.example.biki.ecom.ecommerce.bikash.Entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
@@ -28,6 +26,14 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images; // List of images for the product
+
+    // changes for relation
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private  User user;
 
 
 }

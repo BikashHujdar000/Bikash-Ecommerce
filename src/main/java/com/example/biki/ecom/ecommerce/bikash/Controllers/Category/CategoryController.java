@@ -20,20 +20,20 @@ public class CategoryController {
 
     @GetMapping
     public ResponseEntity<List<CategoryDto>> getAllCategories() {
-        List<CategoryDto> categories = categoryService.getAllCategory();
+        List<CategoryDto> categories = this.categoryService.getAllCategory();
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
     @GetMapping("/{categoryId}")
     public ResponseEntity<CategoryDto> getCategoryById(@PathVariable Long categoryId) {
-        CategoryDto category = categoryService.getCategoryById(categoryId);
+        CategoryDto category = this.categoryService.getCategoryById(categoryId);
         return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto) {
-        CategoryDto createdCategory = categoryService.createCategory(categoryDto);
+        CategoryDto createdCategory = this.categoryService.createCategory(categoryDto);
         return new ResponseEntity<>(createdCategory, HttpStatus.CREATED);
     }
 
@@ -41,14 +41,14 @@ public class CategoryController {
     @PutMapping("/{categoryId}")
     public ResponseEntity<CategoryDto> updateCategory(@PathVariable Long categoryId,
                                                       @RequestBody CategoryDto categoryDto) {
-        CategoryDto updatedCategory = categoryService.updateCategory(categoryDto, categoryId);
+        CategoryDto updatedCategory = this.categoryService.updateCategory(categoryDto, categoryId);
         return new ResponseEntity<>(updatedCategory, HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{categoryId}")
     public ResponseEntity<ApiResponse> deleteCategory(@PathVariable Long categoryId) {
-        categoryService.deleteCategory(categoryId);
+        this.categoryService.deleteCategory(categoryId);
         ApiResponse apiResponse = new ApiResponse("Deleated Successfully",true);
         return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.OK);
     }

@@ -1,5 +1,6 @@
 package com.example.biki.ecom.ecommerce.bikash.Entities;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,16 +9,17 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category {
-
+public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String name;
+    @Column(nullable = false)
+    private String url;
 
-    private String description;
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product; // The product this image belongs to
 
 
 }

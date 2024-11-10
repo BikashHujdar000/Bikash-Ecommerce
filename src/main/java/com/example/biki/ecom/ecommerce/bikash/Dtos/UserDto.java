@@ -20,7 +20,6 @@ public class UserDto {
     @Pattern(regexp = "^[\\w-\\.]+@[\\w-]+\\.[a-zA-Z]{2,4}$", message = "Email format is invalid")
     private String email;
 
-
     private USER_ROLE role;
 
 }

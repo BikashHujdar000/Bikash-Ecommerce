@@ -3,10 +3,7 @@ package com.example.biki.ecom.ecommerce.bikash.Entities;
 
 import com.example.biki.ecom.ecommerce.bikash.Domain.USER_ROLE;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.management.relation.Role;
 
@@ -15,6 +12,7 @@ import javax.management.relation.Role;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class User {
 
     @Id
@@ -30,6 +28,9 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    private USER_ROLE role = USER_ROLE.ROLE_CUSTOMER;
+    private USER_ROLE role = USER_ROLE.ROLE_SELLER;
+
+
+
 
 }

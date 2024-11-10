@@ -9,7 +9,7 @@ public interface ProductService {
 
     // create product
 
-    ProductDto createProduct(ProductDto productDto,Long categoryId);
+    ProductDto createProduct(ProductDto productDto,Long userId,Long categoryId);
 
     // get  product by Id
 

@@ -1,14 +1,13 @@
 
 package com.example.biki.ecom.ecommerce.bikash.Dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class CategoryDto {
     private Long id;
     private String name;

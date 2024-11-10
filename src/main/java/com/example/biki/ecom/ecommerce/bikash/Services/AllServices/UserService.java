@@ -1,5 +1,6 @@
 package com.example.biki.ecom.ecommerce.bikash.Services.AllServices;
 
+import com.example.biki.ecom.ecommerce.bikash.Controllers.Admins.RegistrationAdminDto;
 import com.example.biki.ecom.ecommerce.bikash.Controllers.Users.UsersRequest.SignUpRequest;
 import com.example.biki.ecom.ecommerce.bikash.Dtos.UserDto;
 
@@ -27,5 +28,7 @@ public interface UserService {
     // get User buy ID
 
     UserDto getUserById(Long userId);
+
+UserDto createUserByAdmin(RegistrationAdminDto registrationAdminDto);
 
 }
