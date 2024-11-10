@@ -23,10 +23,10 @@ public interface ProductService {
     List<ProductDto> getAllProductByCategory(Long categoryId);
 
     //update Product
-    ProductDto updateProduct(ProductDto productDto, Long productId);
+    ProductDto updateProduct(ProductDto productDto,Long userId, Long productId);
 
     // delete product
-    void  deleteProduct(Long productId);
+    void  deleteProduct(Long userId, Long productId);
 
 
 

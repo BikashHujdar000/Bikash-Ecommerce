@@ -18,6 +18,17 @@ public class GlobalExceptionHandler {
   }
 
 
+  @ExceptionHandler(UnauthorizedException.class)
+  public  ResponseEntity<ApiResponse>unauthorizedException(UnauthorizedException ex)
+  {
+
+      String message = ex.getMessage();
+      ApiResponse apiResponse = new ApiResponse(message,false);
+      return  new ResponseEntity<>(apiResponse, HttpStatus.FORBIDDEN);
+  }
+
+
+
 }
 
 

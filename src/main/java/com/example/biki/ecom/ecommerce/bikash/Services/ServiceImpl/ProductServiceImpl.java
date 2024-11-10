@@ -6,7 +6,9 @@ import com.example.biki.ecom.ecommerce.bikash.Entities.Category;
 import com.example.biki.ecom.ecommerce.bikash.Entities.Image;
 import com.example.biki.ecom.ecommerce.bikash.Entities.Product;
 import com.example.biki.ecom.ecommerce.bikash.Entities.User;
+import com.example.biki.ecom.ecommerce.bikash.Exceptions.ApiResponse;
 import com.example.biki.ecom.ecommerce.bikash.Exceptions.ResourceNotFound;
+import com.example.biki.ecom.ecommerce.bikash.Exceptions.UnauthorizedException;
 import com.example.biki.ecom.ecommerce.bikash.Repositories.CategoryRepository;
 import com.example.biki.ecom.ecommerce.bikash.Repositories.ProductRepository;
 import com.example.biki.ecom.ecommerce.bikash.Repositories.UserRepository;
@@ -15,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.juli.logging.Log;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -100,28 +103,40 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto updateProduct(ProductDto productDto, Long productId) {
-
+    public ProductDto updateProduct(ProductDto productDto,Long userId, Long productId) {
 
         Product product = this.productRepository.findById(productId).orElseThrow(() -> new ResourceNotFound("Product", "productId", productId));
-        product.setName(productDto.getName());
-        product.setDescription(product.getDescription());
-        product.setPrice(productDto.getPrice());
+
+if (product.getUser().getId() == userId)
+{
+    product.setName(productDto.getName());
+    product.setDescription(product.getDescription());
+    product.setPrice(productDto.getPrice());
 
 
-         Product updatedProduct = this.productRepository.save(product);
+    Product updatedProduct = this.productRepository.save(product);
 
-         return  this.modelMapper.map(updatedProduct,ProductDto.class);
+    return  this.modelMapper.map(updatedProduct,ProductDto.class);
+}else {
+
+    throw  new UnauthorizedException("You are not allowed to update this product");
+}
+
 
     }
 
     @Override
-    public void deleteProduct(Long productId) {
+    public void deleteProduct(Long userId,Long productId) {
 
 
         Product product = this.productRepository.findById(productId).orElseThrow(() -> new ResourceNotFound("Product", "productId", productId));
 
-        this.productRepository.delete(product);
+
+        if (product.getUser().getId() == userId)
+        {
+            this.productRepository.delete(product);
+        }
+        else throw  new UnauthorizedException("You are not allowed to delete the produce");
 
     }
 }

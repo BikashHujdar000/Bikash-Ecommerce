@@ -1,6 +1,7 @@
 package com.example.biki.ecom.ecommerce.bikash.Controllers.Products;
 
 import com.example.biki.ecom.ecommerce.bikash.Dtos.ProductDto;
+import com.example.biki.ecom.ecommerce.bikash.Exceptions.ApiResponse;
 import com.example.biki.ecom.ecommerce.bikash.Services.AllServices.ProductService;
 import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,18 +52,22 @@ public class ProductController {
     }
 
     @PreAuthorize("hasRole('SELLER')")
-    @PutMapping("/{productId}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable Long productId, @RequestBody ProductDto productDto) {
-        ProductDto updatedProduct = productService.updateProduct(productDto, productId);
+    @PutMapping("/update/{userId}/{productId}")
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable("userId") Long userId ,@PathVariable Long productId, @RequestBody ProductDto productDto) {
+        ProductDto updatedProduct = productService.updateProduct(productDto,userId, productId);
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }
 
 
-    @PreAuthorize("hasRole('ADMIN', 'SELLER')")
-    @DeleteMapping("/{productId}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) {
-        productService.deleteProduct(productId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @PreAuthorize("hasRole('SELLER')")
+    @DeleteMapping("/delete/{userId}/{productId}")
+    public ResponseEntity<ApiResponse> deleteProduct(@PathVariable("userId") Long userId, @PathVariable Long productId) {
+        productService.deleteProduct(userId,productId);
+
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setMessage("Product Deleted SuccessFully");
+        apiResponse.setSuccess(true);
+        return new ResponseEntity<>(apiResponse,HttpStatus.OK);
     }
 
 
