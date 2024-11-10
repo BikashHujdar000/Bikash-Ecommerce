@@ -16,6 +16,12 @@ public class HomeController {
          String welcome = " Welcome to Bikash Api Ecommerce Page";
          return  new ResponseEntity<>(welcome, HttpStatus.OK);
     }
+
+
+
+
+
+
 }
 
 
