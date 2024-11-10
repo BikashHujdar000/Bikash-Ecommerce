@@ -4,10 +4,9 @@ import com.example.biki.ecom.ecommerce.bikash.Controllers.Users.UserResponses.Lo
 import com.example.biki.ecom.ecommerce.bikash.Controllers.Users.UsersRequest.LoginRequest;
 import com.example.biki.ecom.ecommerce.bikash.Controllers.Users.UsersRequest.SignUpRequest;
 import com.example.biki.ecom.ecommerce.bikash.Dtos.UserDto;
-import com.example.biki.ecom.ecommerce.bikash.Exceptions.ApiResponse;
 import com.example.biki.ecom.ecommerce.bikash.JWT.JwtUtils;
 import com.example.biki.ecom.ecommerce.bikash.Services.ServiceImpl.UserAuthServiceImpl;
-import com.example.biki.ecom.ecommerce.bikash.Services.UserService;
+import com.example.biki.ecom.ecommerce.bikash.Services.AllServices.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

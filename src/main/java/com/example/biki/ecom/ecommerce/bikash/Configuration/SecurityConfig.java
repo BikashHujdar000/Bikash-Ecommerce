@@ -33,6 +33,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequest->authorizeRequest
                         .requestMatchers("/api/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/auth/**").authenticated()
                         .requestMatchers("/user/auth/**").authenticated())
                 .sessionManagement(sessionManagement->sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -58,9 +59,3 @@ public class SecurityConfig {
      }
 
 }
-
-//
-//.requestMatchers("/api/admin/**").hasRole("ADMIN")
-//            .requestMatchers("/api/seller/**").hasRole("SELLER")
-//            .requestMatchers("/api/customer/**").hasRole("CUSTOMER")
-//            .requestMatchers("/api/public/**").permitAll()

@@ -2,7 +2,7 @@ package com.example.biki.ecom.ecommerce.bikash.Controllers.Users;
 
 import com.example.biki.ecom.ecommerce.bikash.Dtos.UserDto;
 import com.example.biki.ecom.ecommerce.bikash.Exceptions.ApiResponse;
-import com.example.biki.ecom.ecommerce.bikash.Services.UserService;
+import com.example.biki.ecom.ecommerce.bikash.Services.AllServices.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -15,5 +15,6 @@ public class ProductDto {
     private String name;
     private String description;
     private double price;
-    private Long categoryId; // Only the ID to refer to Category
+    private Long categoryId; // only i will take id to acvoid circular dependency and keep code clean
+
 }
