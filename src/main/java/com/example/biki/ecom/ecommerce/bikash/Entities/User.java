@@ -30,7 +30,8 @@ public class User {
 
     private USER_ROLE role = USER_ROLE.ROLE_SELLER;
 
-
+   @OneToOne(mappedBy = "user" ,cascade = CascadeType.ALL,orphanRemoval = true)
+    private  Cart cart ;
 
 
 }

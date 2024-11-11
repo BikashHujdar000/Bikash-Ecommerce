@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -71,6 +72,7 @@ public class RegisterController {
         try {
             userDetails = this.userAuthService.loadUserByUsername(loginRequest.getEmail());
 
+
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -80,11 +82,14 @@ public class RegisterController {
 
         String token = this.jwtUtils.generateToken(userDetails.getUsername());
 
+
+
         // now return what you want
 
         LoginResponse response = new LoginResponse();
 
         response.setJwtToken(token);
+
 
 
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);

@@ -22,4 +22,8 @@ public class UserDto {
 
     private USER_ROLE role;
 
+    private Long cartId;
+
+
+
 }
