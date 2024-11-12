@@ -18,7 +18,7 @@ public class Cart {
     private Long id;
 
 
-    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
     List<CartItem> cartItemsList= new ArrayList<>();
 
 

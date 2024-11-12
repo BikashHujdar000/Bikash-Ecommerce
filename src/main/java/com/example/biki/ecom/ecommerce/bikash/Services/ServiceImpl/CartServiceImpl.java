@@ -37,9 +37,10 @@ public class CartServiceImpl  implements CartService {
 
     @Override
     public CartDto getCartForUser(Long userId) {
-        // Fetch the cart for the user
-        Cart cart = cartRepository.findByUserId(userId).orElseThrow(() -> new ResourceNotFound("Cart", "userId", userId));
+
+        Cart cart = this.cartRepository.findByUserId(userId).orElseThrow(() -> new ResourceNotFound("Cart", "userId", userId));
         return modelMapper.map(cart, CartDto.class);
+
     }
 
 }

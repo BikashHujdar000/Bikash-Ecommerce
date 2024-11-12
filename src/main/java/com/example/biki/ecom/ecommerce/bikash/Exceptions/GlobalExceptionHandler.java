@@ -28,38 +28,15 @@ public class GlobalExceptionHandler {
   }
 
 
-
+  @ExceptionHandler(CartEmptyException.class)
+public  ResponseEntity<ApiResponse> illegalStateException(CartEmptyException ex)
+{
+    String message = ex.getMessage();
+    ApiResponse apiResponse = new ApiResponse(message,false);
+    return  new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
 }
 
 
-//
-//@RestControllerAdvice
-//public class GlobalExceptionalHandler {
-//
-//    @ExceptionHandler(ResourceNotFound.class)
-//    public ResponseEntity<ApiResponse>responseNotFoundException (ResourceNotFound ex)
-//    {
-//        String message =  ex.getMessage();
-//        ApiResponse apiResponse = new ApiResponse(message,false);
-//        return   new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.NOT_FOUND);
-//
-//
-//    }
-//
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<Map<String,String>> validationException (MethodArgumentNotValidException ex)
-//    {
-//
-//        Map <String,String> resp = new HashMap<>();
-//        ex.getBindingResult().getAllErrors().forEach((error)->{
-//
-//            String fieldName = ((FieldError)error).getField();
-//            String message = error.getDefaultMessage();
-//            resp.put(fieldName,message);
-//
-//        });
-//
-//        return new ResponseEntity<Map<String , String>>(resp,HttpStatus.BAD_REQUEST);
-//    }
-//
-//}
+
+}
+
