@@ -14,14 +14,10 @@ public interface OrderService {
 
     OrderDto getOrderById(Long orderId);
 
-
     OrderDto updateOrderStatus(Long orderId, String status);
 
 
     void cancelOrder(Long orderId);
-
-
-
 
 
 }

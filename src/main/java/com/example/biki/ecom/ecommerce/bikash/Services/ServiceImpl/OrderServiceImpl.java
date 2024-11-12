@@ -84,21 +84,13 @@ public class OrderServiceImpl implements OrderService {
 
         // clear the selected items from the cart
 
-       try
-       {
-           cart.getCartItemsList().clear();
-           this.cartRepository.save(cart);
+        try {
+            cart.getCartItemsList().clear();
+            this.cartRepository.save(cart);
 
-       } catch (RuntimeException ex)
-       {
-         throw  new UnauthorizedException("Cart ITem is not cleared");
-       }
-
-
-
-
-
-
+        } catch (RuntimeException ex) {
+            throw new UnauthorizedException("Cart ITem is not cleared");
+        }
 
 
         return this.modelMapper.map(savedOrder, OrderDto.class);
@@ -108,21 +100,41 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDto> getOrdersByUser(Long userId) {
-        return List.of();
+         // logic user get , get order bu userid
+
+        User user = this.userRepository.findById(userId).orElseThrow(() -> new ResourceNotFound("User", "userId", userId));
+          List<Order> orders = this.orderRepository.findByUser(user);
+         return orders.stream().map(item-> this.modelMapper.map(item, OrderDto.class)).collect(Collectors.toList());
     }
 
     @Override
     public OrderDto getOrderById(Long orderId) {
-        return null;
+
+        Order order =  this.orderRepository.findById(orderId).orElseThrow(()-> new ResourceNotFound("Order","orederID",orderId));
+        return  this.modelMapper.map(order, OrderDto.class);
+
     }
 
     @Override
     public OrderDto updateOrderStatus(Long orderId, String status) {
-        return null;
+
+        Order order =  this.orderRepository.findById(orderId).orElseThrow(()-> new ResourceNotFound("Order","orederID",orderId));
+        order.setStatus(status);
+    return  this.modelMapper.map(order, OrderDto.class);
+
     }
 
     @Override
     public void cancelOrder(Long orderId) {
+
+        Order order =  this.orderRepository.findById(orderId).orElseThrow(()-> new ResourceNotFound("Order","orederID",orderId));
+
+        System.out.println("reached in implementation layer ");
+        order.setStatus("CANCELLED");
+        this.orderRepository.save(order);
+
+        // refunding haru kehi yaha  request garney xum
+
 
     }
 }
