@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestClient;
 
 @SpringBootApplication
 public class EcommerceBikashApiApplication  implements CommandLineRunner {
@@ -25,5 +26,14 @@ public class EcommerceBikashApiApplication  implements CommandLineRunner {
 	{
 		return  new ModelMapper();
 	}
+
+
+	@Bean
+	public RestClient restClient() {
+		return RestClient.builder()
+				.baseUrl("https://a.khalti.com/api/v2")  // Base URL Khalti
+				.build();
+	}
+
 
 }

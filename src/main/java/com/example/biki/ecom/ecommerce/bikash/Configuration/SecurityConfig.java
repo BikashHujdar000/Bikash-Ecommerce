@@ -31,10 +31,11 @@ public class SecurityConfig {
     public DefaultSecurityFilterChain securityFilterChain (HttpSecurity security) throws Exception {
        return    security.csrf(csrf-> csrf.disable())
                 .authorizeHttpRequests(authorizeRequest->authorizeRequest
-                        .requestMatchers("/api/**").permitAll()
+                        .requestMatchers("/api/**","test/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/auth/**").authenticated()
                         .requestMatchers("/user/auth/**").authenticated())
+
                 .sessionManagement(sessionManagement->sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterAfter(this.jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
