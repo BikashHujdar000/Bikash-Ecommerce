@@ -101,7 +101,6 @@ public class PaymentController {
                 .body(Response.class);
 
 
-        System.out.println(response);
 
         return  new ResponseEntity<>(response,HttpStatus.ACCEPTED);
 
