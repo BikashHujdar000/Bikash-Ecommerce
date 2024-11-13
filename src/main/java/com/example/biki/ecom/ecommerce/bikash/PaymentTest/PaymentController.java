@@ -19,7 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/api")
 public class PaymentController {
 
     private static final Logger logger = LoggerFactory.getLogger(PaymentController.class);
